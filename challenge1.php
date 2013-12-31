@@ -10,7 +10,6 @@
   require 'vendor/autoload.php';
 
   use OpenCloud\Rackspace;
-  use OpenCloud\Compute\Constants\Network;
   use OpenCloud\Compute\Constants\ServerState;
 
   /* Parse our credentials from the desired location
@@ -59,11 +58,7 @@
     $response = $server->Create(array(
       'name'     => 'Challenge 1 Server',
       'image'    => $wheezy,
-      'flavor'   => $serverFlavor,
-      'networks' => array(
-        $compute->network(Network::RAX_PUBLIC),
-        $compute->network(Network::RAX_PRIVATE)
-      )
+      'flavor'   => $serverFlavor
     ));
   } catch (\Guzzle\Http\Exception\BadResponseException $e) {
     $responseBody = (string) $e->getResponse()->getBody();
